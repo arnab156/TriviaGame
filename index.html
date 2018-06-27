@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trivia Game!</title>
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+  <!-- LINK  JavaScipt later <link rel="stylesheet" href="assets/css/style.css" type="text/css"> -->
+</head>
+
+
+<body>
+    <div> 
+    <div class="container-fluid"> 
+         <h1 class="display-1 text-sm-center">Trivia Game</h1>
+
+<div id="trivia" class = "text-center"> 
+    <button id="btn" class="myBtn text-danger">Start</button>
+</div>
+
+<div id="display" class = "text-danger" style = "position:fixed; left:48%;"></div>
+<div id="result"class = "text-center text-danger"></div>
+
+<div class="questions" >
+    <p>1. What is the Capital of British India before 1913?</p>
+    <form class="options" id = "question1">
+        <input class="option" type="radio" name="question1" value=4>Bombay<br>
+        <input class="option" type="radio" name="question1" value=3>Old Delhi<br>
+        <input class="option" type="radio" name="question1" value=2>Calcutta<br>
+        <input class="option" type="radio" name="question1" value=1>New Delhi</br>
+    </form>
+</div>
+<br>
+<div class="questions">
+        <p>2. What is the Capital of Japan before Tokyo?</p>
+        <form class="options" id = "question2">
+            <input class="option" type="radio" name="question2" value=4>Tokyo<br>
+            <input class="option" type="radio" name="question2" value=3>Hiroshima<br>
+            <input class="option" type="radio" name="question2" value=2>Kyoto<br>
+            <input class="option" type="radio" name="question2" value=1>Okinawa</br>
+        </form>
+    </div>
+<br>
+<div class="questions" >
+    <p>3. What is the former name of a neighboring country of Kingdom of Thailand?</p>
+    <form class="options" id = "question3">
+        <input class="option" type="radio" name="question3" value=4>Indo-China<br>
+        <input class="option" type="radio" name="question3" value=3>Kampuchea<br>
+        <input class="option" type="radio" name="question3" value=2>Siam<br>
+        <input class="option" type="radio" name="question3" value=1>Myanmar</br>
+    </form>
+</div>
+<br>
+<div class="questions" >
+    <p>4. What is the Capital of East Timor?</p>
+    <form class="options" id = "question4">
+        <input class="option" type="radio" name="question4" value=4>Deli<br>
+        <input class="option" type="radio" name="question4" value=3>Jakarta<br>
+        <input class="option" type="radio" name="question4" value=2>Addis Abbaba<br>
+        <input class="option" type="radio" name="question4" value=1>Khartoum</br>
+    </form>
+</div>
+<br>
+<div class="questions" >
+    <p>5. What is the newest country in the world?</p>
+    <form class="options" id = "question5">
+        <input class="option" type="radio" name="question1" value=4>Eritrea<br>
+        <input class="option" type="radio" name="question1" value=3>North Korea<br>
+        <input class="option" type="radio" name="question1" value=2>South Sudan<br>
+        <input class="option" type="radio" name="question1" value=1>Hong Kong</br>
+    </form>
+</div>
+<br>
+    </div>
+    </div>
+
+
+    <script>
+    var audio = new Audio("assets/images/TaDA.mp3");
+    $(".questions").hide();
+    $("#display").hide();
+    $("#result").hide();
+    $("#display").text("10");
+    
+    //quiz starts when clicked on the button
+    var clockRunning = false;
+    $("#btn").on("click", function(){
+        // hide the start button
+        $("#btn").hide();
+        $("#result").hide();
+        //give alert on time and question
+        alert("You have 5 questions and 1 minutes to answer all question");
+        // show all the questions and next button for next question
+        $(".questions").show();
+        $("#display").show();
+        
+
+       var number = 10;
+       var intervalId;
+        function run() {
+        clearInterval(intervalId);
+         intervalId = setInterval(decrement, 1000);
+        }
+        function decrement() {
+      //  Decrease number by one.
+        number--;
+      //  Show the number in the #show-number tag.
+        $("#display").html("<h2>" + number + "</h2>");
+            if (number === 0) {
+            $("#result").append("<h2>Time's Up! Here is the result: </h2>");
+            calc_result ();
+            }
+        }
+        run ();
+        // setTimeout(timeUp, 1000 * 10); //2 minutes timer
+        var correct = 0;
+        var incorrect = 0;
+        var unans = 0;
+        
+        // compare results of each answer.
+                
+        var answer = new Array (5);
+            answer[0] = 2;
+            answer[1] = 2;
+            answer[2] = 3;
+            answer[3] = 4;
+            answer[4] = 2;
+
+
+
+// function should check the checked value vs answer value. 
+
+
+        function test() {
+            for (j=0; j<=4; j++) {
+            var radios = document.getElementsById("#question"+j);
+            console.log (radios);
+                for (i=0;i<radios.length;i++) {
+                    var radio = radios[i];
+                    if (radio.checked){
+                        if (radio.value === answer[j]) {
+                            console.log (radio.value);
+                            correct ++;
+                        }
+                        else { incorrect++;}
+                    } else {unans++;}
+                }
+            }
+        }
+        test ();
+
+
+
+
+
+
+
+
+
+        // TIMER NEEDS TO SHOW MANNNNN
+
+        function calc_result () {
+            audio.play();
+            alert ("The result is being calculated");
+            $(".questions").hide();
+            $("#result").show();
+            $("#btn").hide();
+            $("#display").hide();
+            $("#result").append("<h2>" +"Correct Answers: "  + correct  + "</h2>");
+            $("#result").append("<h2>" +"Incorrect Answers:"  + incorrect  + "</h2>");
+            $("#result").append("<h2>" +"Unanswered:"  + unans  + "</h2>");
+        }
+
+         
+  
+        
+
+    });
+    
+    
+    
+    </script>
+</body>
+</html>
