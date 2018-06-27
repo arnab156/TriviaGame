@@ -17,18 +17,18 @@
 
 
 <body>
-    <div> 
-    <div class="container-fluid"> 
-         <h1 class="display-1 text-sm-center">Trivia Game</h1>
+    <div style="background-image: url('assets/images/lgt.png'); height:800px; overflow: auto;"> 
+    <div class="container-fluid" style = "background-color: powderblue; width: 50%; left: 50%; height:720px; margin-top: 50px;overflow: auto;" > 
+         <h1 class="display-1 text-sm-center text-success">Trivia Game</h1>
+<!-- <div style = "background-color: powderblue">  </div> -->
+    <div id="trivia" class = "text-center" > 
+    <button id="btn" class="myBtn btn btn-success btn-lg">Start</button>
+    </div>
 
-<div id="trivia" class = "text-center"> 
-    <button id="btn" class="myBtn text-danger">Start</button>
-</div>
-
-<div id="display" class = "text-danger" style = "position:fixed; left:48%;"></div>
+<div id="display" class = "text-danger" style = "position:fixed; left:70%; background: none; color: orangered;"></div>
 <div id="result"class = "text-center text-danger"></div>
 
-<div class="questions" >
+<div class="questions text-success" >
     <p>1. What is the Capital of British India before 1913?</p>
     <form class="options" id = "question1">
         <input class="option1" type="radio" name="question1" value=4>Bombay<br>
@@ -38,7 +38,7 @@
     </form>
 </div>
 <br>
-<div class="questions">
+<div class="questions text-success">
         <p>2. What is the Capital of Japan before Tokyo?</p>
         <form class="options" id = "question2">
             <input class="option2" type="radio" name="question2" value=4>Tokyo<br>
@@ -48,7 +48,7 @@
         </form>
     </div>
 <br>
-<div class="questions" >
+<div class="questions text-success" >
     <p>3. What is the former name of a neighboring country of Kingdom of Thailand?</p>
     <form class="options" id = "question3">
         <input class="option3" type="radio" name="question3" value=4>Indo-China<br>
@@ -58,7 +58,7 @@
     </form>
 </div>
 <br>
-<div class="questions" >
+<div class="questions text-success" >
     <p>4. What is the Capital of East Timor?</p>
     <form class="options" id = "question4">
         <input class="option4" type="radio" name="question4" value=4>Deli<br>
@@ -68,7 +68,7 @@
     </form>
 </div>
 <br>
-<div class="questions" >
+<div class="questions text-success" >
     <p>5. What is the newest country in the world?</p>
     <form class="options" id = "question5">
         <input class="option5" type="radio" name="question1" value=4>Eritrea<br>
@@ -87,7 +87,7 @@
     $(".questions").hide();
     $("#display").hide();
     $("#result").hide();
-    $("#display").text("10"); //timer default text and not related to timer function
+    $("#display").text("30"); //timer default text and not related to timer function
     
     //quiz starts when clicked on the button
     
@@ -99,10 +99,8 @@
         alert("You have 5 questions and 1 minutes to answer all question");
         // show all the questions and next button for next question
         $(".questions").show();
-        $("#display").show();
-        
-
-       var number = 10; //Timer length 
+        $("#display").show();       
+       var number = 30; //Timer length 
        var intervalId;
        var correct = 0;
        var incorrect = 0;
@@ -177,7 +175,7 @@
                    correct++;
                     } 
                 else if (answer[i] === undefined) {
-            unans++;
+                   unans++;
         } else {
             incorrect++;
         }
@@ -199,38 +197,38 @@
             $("#result").append("<h2>" +"Correct Answers: "  + correct  + "</h2>");
             $("#result").append("<h2>" +"Incorrect Answers:"  + incorrect  + "</h2>");
             $("#result").append("<h2>" +"Unanswered:"  + unans  + "</h2>");
-            var restartBtn = $("<button id='btn'>");
-                restartBtn.addClass("restartBtn");
-                restartBtn.html("Restart Game");
-                $("#result").append(restartBtn);
+            // var restartBtn = $("<button id='btn'>");
+            //     restartBtn.addClass("restartBtn");
+            //     restartBtn.html("Restart Game");
+            //     $("#result").append(restartBtn);
         }
 
-        $('.restartBtn').on('click', function () {
+//         $('.restartBtn').on('click', function () {
         
-// RESTORE VARIABLES TO ORIGINAL VALUE
-        correct = 0;
-        incorrect = 0;
-        unans = 0;
-        number = 10;
+// // RESTORE VARIABLES TO ORIGINAL VALUE
+//         correct = 0;
+//         incorrect = 0;
+//         unans = 0;
+//         number = 10;
 
-        userAnswer1 = 0;
-        userAnswer2 = 0;
-        userAnswer3 = 0;
-        userAnswer4 = 0;
-        userAnswer5 = 0;
-        userAnswers = [];
+//         userAnswer1 = 0;
+//         userAnswer2 = 0;
+//         userAnswer3 = 0;
+//         userAnswer4 = 0;
+//         userAnswer5 = 0;
+//         userAnswers = [];
 
-// RESTORE DISPLAY TO ORIGINAL APPEARANCE
-        $(".result").empty();
-        $('.option1').prop('checked', false);
-        $('.option2').prop('checked', false);
-        $('.option3').prop('checked', false);
-        $('.option4').prop('checked', false);
-        $('.option5').prop('checked', false);
+// // RESTORE DISPLAY TO ORIGINAL APPEARANCE
+//         $(".result").empty();
+//         $('.option1').prop('checked', false);
+//         $('.option2').prop('checked', false);
+//         $('.option3').prop('checked', false);
+//         $('.option4').prop('checked', false);
+//         $('.option5').prop('checked', false);
 
 
 
-}) 
+// }) 
   
         
 
