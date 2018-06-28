@@ -3,7 +3,7 @@ var audio = new Audio("assets/images/TaDA.mp3");
 $(".questions").hide();
 $("#display").hide();
 $("#result").hide();
-$("#display").text("30"); //timer default text and not related to timer function
+$("#display").text("20"); //timer default text and not related to timer function
 
 //quiz starts when clicked on the button
 
@@ -12,13 +12,13 @@ $("#btn").on("click", function(){
     $("#btn").hide();
     $("#result").hide();
     //give alert on time and question
-    alert("You have 5 questions and 1 minutes to answer all question");
+    alert("You have 5 questions and 20 seconds to answer all question");
     // show all the questions and next button for next question
     $(".questions").show();
     $("#display").show();     
 
     // Can call it using function and reinitialize it with restart btn.  
-    var number = 10; //Timer length 
+    var number = 20; //Timer length 
     var intervalId;
     var correct = 0;
     var incorrect = 0;
