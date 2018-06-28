@@ -2,240 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trivia Game!</title>
   <!-- Added link to the jQuery Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css" type="text/css">
   <!-- LINK  JavaScipt later <link rel="stylesheet" href="assets/css/style.css" type="text/css"> -->
-
-  <style>
-  
-  
-  </style>
 </head>
 
 
 <body>
     <div style="background-image: url('assets/images/lgt.png'); height:800px; overflow: auto;"> 
-    <div class="container-fluid" style = "background-color: powderblue; width: 50%; left: 50%; height:720px; margin-top: 50px;overflow: auto;" > 
-         <h1 class="display-1 text-sm-center text-success">Trivia Game</h1>
-<!-- <div style = "background-color: powderblue">  </div> -->
-    <div id="trivia" class = "text-center" > 
-    <button id="btn" class="myBtn btn btn-success btn-lg">Start</button>
-    </div>
-
-<div id="display" class = "text-danger" style = "position:fixed; left:70%; background: none; color: orangered;"></div>
-<div id="result"class = "text-center text-danger"></div>
-
-<div class="questions text-success" >
-    <p>1. What is the Capital of British India before 1913?</p>
-    <form class="options" id = "question1">
-        <input class="option1" type="radio" name="question1" value=4>Bombay<br>
-        <input class="option1" type="radio" name="question1" value=3>Old Delhi<br>
-        <input class="option1" type="radio" name="question1" value=2>Calcutta<br>
-        <input class="option1" type="radio" name="question1" value=1>New Delhi</br>
-    </form>
-</div>
-<br>
-<div class="questions text-success">
-        <p>2. What is the Capital of Japan before Tokyo?</p>
-        <form class="options" id = "question2">
-            <input class="option2" type="radio" name="question2" value=4>Tokyo<br>
-            <input class="option2" type="radio" name="question2" value=3>Hiroshima<br>
-            <input class="option2" type="radio" name="question2" value=2>Kyoto<br>
-            <input class="option2" type="radio" name="question2" value=1>Okinawa</br>
-        </form>
-    </div>
-<br>
-<div class="questions text-success" >
-    <p>3. What is the former name of a neighboring country of Kingdom of Thailand?</p>
-    <form class="options" id = "question3">
-        <input class="option3" type="radio" name="question3" value=4>Indo-China<br>
-        <input class="option3" type="radio" name="question3" value=3>Kampuchea<br>
-        <input class="option3" type="radio" name="question3" value=2>Siam<br>
-        <input class="option3" type="radio" name="question3" value=1>Myanmar</br>
-    </form>
-</div>
-<br>
-<div class="questions text-success" >
-    <p>4. What is the Capital of East Timor?</p>
-    <form class="options" id = "question4">
-        <input class="option4" type="radio" name="question4" value=4>Deli<br>
-        <input class="option4" type="radio" name="question4" value=3>Jakarta<br>
-        <input class="option4" type="radio" name="question4" value=2>Addis Abbaba<br>
-        <input class="option4" type="radio" name="question4" value=1>Khartoum</br>
-    </form>
-</div>
-<br>
-<div class="questions text-success" >
-    <p>5. What is the newest country in the world?</p>
-    <form class="options" id = "question5">
-        <input class="option5" type="radio" name="question1" value=4>Eritrea<br>
-        <input class="option5" type="radio" name="question1" value=3>North Korea<br>
-        <input class="option5" type="radio" name="question1" value=2>South Sudan<br>
-        <input class="option5" type="radio" name="question1" value=1>Hong Kong</br>
-    </form>
-</div>
-<br>
-    </div>
-    </div>
-
-
-    <script>
-    var audio = new Audio("assets/images/TaDA.mp3");
-    $(".questions").hide();
-    $("#display").hide();
-    $("#result").hide();
-    $("#display").text("30"); //timer default text and not related to timer function
-    
-    //quiz starts when clicked on the button
-    
-    $("#btn").on("click", function(){
-        // hide the start button
-        $("#btn").hide();
-        $("#result").hide();
-        //give alert on time and question
-        alert("You have 5 questions and 1 minutes to answer all question");
-        // show all the questions and next button for next question
-        $(".questions").show();
-        $("#display").show();       
-       var number = 30; //Timer length 
-       var intervalId;
-       var correct = 0;
-       var incorrect = 0;
-       var unans = 0;
-       
-       function run() {
-        clearInterval(intervalId);
-        intervalId = setInterval(decrement, 1000);
-        }
-        function decrement() {
-      //  Decrease number by one.
-        number--;
-      //  Show the number in the #show-number tag. timer shuts down the system and calculates the points etc.
-        $("#display").html("<h2>" + number + "</h2>");
-            if (number === 0) {
-            $("#result").append("<h2>Time's Up! Here is the result: </h2>");
-            calc_result ();
-            }
-        }
-        run();
-        // setTimeout(timeUp, 1000 * 10); //1 minutes timer
-    
-                
-        var answer = [2,2,3,4,2];
-            var userAnswer1;
-            var userAnswer2;
-            var userAnswer3;
-            var userAnswer4;
-            var userAnswer5;
-            var userAnswers = [];
-
-// GET VALUE OF ANSWER CLICKED
-
-        $(".option1").on('click', function (storeTriviaBtnAnswer) {	
-	    userAnswer1 = $('input[name="question1"]:checked').val();
-	    }); 
-
-        $(".option2").on('click', function (storeTriviaBtnAnswer) {	
-	    userAnswer2 = $('input[name="question2"]:checked').val();
-	    }); 
-
-       $(".option3").on('click', function (storeTriviaBtnAnswer) {	
-	   userAnswer3 = $('input[name="question3"]:checked').val();
-       }); 
-       $(".option4").on('click', function (storeTriviaBtnAnswer) {	
-	   userAnswer4 = $('input[name="question4"]:checked').val();
-	   }); 
-       $(".option5").on('click', function (storeTriviaBtnAnswer) {	
-	    userAnswer5 = $('input[name="question5"]:checked').val();
-	   }); 
-
-// // CREATE ANSWER ARRAY OF USER ANSWERS
-
-       function createArrayOfUserAnswers() {
-         	userAnswers.push(userAnswer1);
-	        userAnswers.push(userAnswer2);
-            userAnswers.push(userAnswer3);
-            userAnswers.push(userAnswer4);
-            userAnswers.push(userAnswer5);
-	        console.log(userAnswers);
-    }
-
-    
-// function should check the checked value vs answer value. 
-
-      function compareArray() {
-        createArrayOfUserAnswers();
-      var userAnswersLength = userAnswers.length;
-      console.log(userAnswersLength);
-           for (var i = 0; i < userAnswersLength; i++) {
-               if (answer[i] == userAnswers[i]) {
-                   correct++;
-                    } 
-                else if (answer[i] === undefined) {
-                   unans++;
-        } else {
-            incorrect++;
-        }
-    }
-}
-
-
-        // last function should call all the calcultaions function and then play a winning noise, and declare all the results.
-
-        function calc_result () {
-            
-            compareArray();
-            audio.play();
-            alert ("The result is being calculated");
-            $(".questions").hide();
-            $("#result").show();
-            $("#btn").hide();
-            $("#display").hide();
-            $("#result").append("<h2>" +"Correct Answers: "  + correct  + "</h2>");
-            $("#result").append("<h2>" +"Incorrect Answers:"  + incorrect  + "</h2>");
-            $("#result").append("<h2>" +"Unanswered:"  + unans  + "</h2>");
-            // var restartBtn = $("<button id='btn'>");
-            //     restartBtn.addClass("restartBtn");
-            //     restartBtn.html("Restart Game");
-            //     $("#result").append(restartBtn);
-        }
-
-//         $('.restartBtn').on('click', function () {
-        
-// // RESTORE VARIABLES TO ORIGINAL VALUE
-//         correct = 0;
-//         incorrect = 0;
-//         unans = 0;
-//         number = 10;
-
-//         userAnswer1 = 0;
-//         userAnswer2 = 0;
-//         userAnswer3 = 0;
-//         userAnswer4 = 0;
-//         userAnswer5 = 0;
-//         userAnswers = [];
-
-// // RESTORE DISPLAY TO ORIGINAL APPEARANCE
-//         $(".result").empty();
-//         $('.option1').prop('checked', false);
-//         $('.option2').prop('checked', false);
-//         $('.option3').prop('checked', false);
-//         $('.option4').prop('checked', false);
-//         $('.option5').prop('checked', false);
-
-
-
-// }) 
-  
-        
-
-    });
-    
-    
-    
-    </script>
+        <div class="container-fluid" style = "background-color: powderblue; width: 50%; left: 50%; height:720px; margin-top: 50px;overflow: auto;" > 
+            <h1 class="display-1 text-sm-center text-success">Trivia Game</h1>
+            <div id="trivia" class = "text-center" > 
+                <button id="btn" class="myBtn btn btn-success btn-lg">Start</button>
+            </div>
+            <div id="display" class = "text-danger" style = "position:fixed; left:70%; background: none; color: orangered;">
+            </div>
+            <div id="result"class = "text-center text-danger">
+            </div>
+            <div class="questions text-success" >
+                <p>1. What was the Capital of British India before 1913?</p>
+                <form class="options" id = "question1">
+                    <input class="option1" type="radio" name="question1" value=4>Bombay<br>
+                    <input class="option1" type="radio" name="question1" value=3>Old Delhi<br>
+                    <input class="option1" type="radio" name="question1" value=2>Calcutta<br>
+                    <input class="option1" type="radio" name="question1" value=1>New Delhi</br>
+                </form>
+            </div>
+            <br>
+            <div class="questions text-success">
+                <p>2. What was the capital of Japan before Tokyo?</p>
+                <form class="options" id = "question2">
+                    <input class="option2" type="radio" name="question2" value=4>Tokyo<br>
+                    <input class="option2" type="radio" name="question2" value=3>Hiroshima<br>
+                    <input class="option2" type="radio" name="question2" value=2>Kyoto<br>
+                    <input class="option2" type="radio" name="question2" value=1>Okinawa</br>
+                </form>
+            </div>
+            <br>
+            <div class="questions text-success" >
+                <p>3. What is the former name of a neighboring country of Kingdom of Thailand?</p>
+                <form class="options" id = "question3">
+                    <input class="option3" type="radio" name="question3" value=4>Indo-China<br>
+                    <input class="option3" type="radio" name="question3" value=3>Kampuchea<br>
+                    <input class="option3" type="radio" name="question3" value=2>Siam<br>
+                    <input class="option3" type="radio" name="question3" value=1>Myanmar</br>
+                </form>
+            </div>
+            <br>
+            <div class="questions text-success" >
+                <p>4. What is the Capital of East Timor?</p>
+                <form class="options" id = "question4">
+                    <input class="option4" type="radio" name="question4" value=4>Dili<br>
+                    <input class="option4" type="radio" name="question4" value=3>Jakarta<br>
+                    <input class="option4" type="radio" name="question4" value=2>Addis Abbaba<br>
+                    <input class="option4" type="radio" name="question4" value=1>Khartoum</br>
+                </form>
+            </div>
+            <br>
+            <div class="questions text-success" >
+                <p>5. What is the newest country in the world?</p>
+                <form class="options" id = "question5">
+                    <input class="option5" type="radio" name="question1" value=4>Eritrea<br>
+                    <input class="option5" type="radio" name="question1" value=3>North Korea<br>
+                    <input class="option5" type="radio" name="question1" value=2>South Sudan<br>
+                    <input class="option5" type="radio" name="question1" value=1>Hong Kong</br>
+                </form>
+            </div>
+            <br>
+            <script src="assets/javascript/app.js"></script>
+        </div>
+    /div>
 </body>
 </html>
