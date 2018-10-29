@@ -7,3 +7,6 @@ Let's play some trivia at https://arnab156.github.io/TriviaGame/
 4. The timer will be visible to you.
 5. You will get your final results with correct, incorrect and unaswered scores.
 6. Keep playing till you get 5 correct answers!
+
+
+Technologies used: JavaScript, BootStrap, and Momentjs.
